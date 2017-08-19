@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.4.3">Jekyll</generator><link href="https://scambier.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://scambier.github.io/" rel="alternate" type="text/html" /><updated>2017-08-20T00:16:38+02:00</updated><id>https://scambier.github.io/</id><title type="html">scambier.github.io</title><subtitle>Code &amp; Games. Mainly code, tough.
+</subtitle><entry><title type="html">Writing TypeScript for the TIC-80</title><link href="https://scambier.github.io/2017/07/09/writing-typescript-for-the-tic-80.html" rel="alternate" type="text/html" title="Writing TypeScript for the TIC-80" /><published>2017-07-09T20:00:00+02:00</published><updated>2017-07-09T20:00:00+02:00</updated><id>https://scambier.github.io/2017/07/09/writing-typescript-for-the-tic-80</id><content type="html" xml:base="https://scambier.github.io/2017/07/09/writing-typescript-for-the-tic-80.html">&lt;p&gt;The &lt;a href=&quot;http://tic.computer/&quot;&gt;TIC-80&lt;/a&gt;  is a fantasy console (much like the well-known
+&lt;a href=&quot;https://www.lexaloffle.com/pico-8.php&quot;&gt;PICO-8&lt;/a&gt;, but with less restrictions) that
+suddenly became a lot more interesting to me with its last update, that allows
+developers to write games in JavaScript.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;2017-08-05 Update:&lt;/strong&gt; I transformed this into a real project, available from npm: &lt;a href=&quot;https://www.npmjs.com/package/tic80-typescript&quot;&gt;https://www.npmjs.com/package/tic80-typescript&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://github.com/scambier/tic80-typescript/raw/master/logo.png&quot; alt=&quot;TSC-80 logo&quot;&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Original post:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;#39;m not too fond of Lua — or dynamically typed languages in general, with the exception of JS — for various reasons, so the possibility of using JavaScript is a big deal for me, because it means that I can use TypeScript!&lt;/p&gt;
+
+&lt;p&gt;So, I created a small repository to host all the files needed to efficiently use TypeScript with TIC-80. It contains a definitions file with all the TIC-80 global functions, and a script that will compress the compiled JavaScript file, to save the maximum number of characters (as TIC-80 allows a maximum of 65535 bytes for the code). By default, the compressed file is still legible to ease the debugging, but you can save up to 60% of code, once compressed and mangled. It will be a bit harder to debug though.&lt;/p&gt;
+
+&lt;p&gt;You can read more about this project and &lt;a href=&quot;https://github.com/scambier/tic80-typescript&quot;&gt;download it here&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">The TIC-80 is a fantasy console (much like the well-known PICO-8, but with less restrictions) that suddenly became a lot more interesting to me with its last update, that allows developers to write games in JavaScript.</summary></entry></feed>
