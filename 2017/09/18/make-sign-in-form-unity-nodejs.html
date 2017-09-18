@@ -103,7 +103,7 @@
   <div class="post-full-content" itemprop="articleBody">
     <p>Ever dreamed of making your own login form in Unity, to authenticate your users through NodeJS? Good, that&#39;s exactly what we&#39;re about to do.</p>
 
-<p>This post won&#39;t guide you through a step-by-step to make a login form, but will give you all the necessary code to make it work yourself. As such, it is recommended to have at least some familiarity with the following technologies:</p>
+<p>This post is <strong>not</strong> aimed at beginners, but will give you all the necessary code to make it work yourself. I recommend to have at least some familiarity with the following technologies:</p>
 
 <ul>
 <li>Unity 5.4+, to use the <code>UnityWebRequest</code> class</li>
@@ -111,19 +111,19 @@
 <li>TypeScript. Not essential, but my backend code is written in it</li>
 </ul>
 
-<p>For most of the Unity  webcalls code, I used <a href="https://codetolight.wordpress.com/2017/01/18/unity-rest-api-interaction-with-unitywebrequest-and-besthttp/">this blog post</a> as a reference. You should read it too.</p>
+<p>For most of the Unity webcalls code, I used <a href="https://codetolight.wordpress.com/2017/01/18/unity-rest-api-interaction-with-unitywebrequest-and-besthttp/">this blog post</a> as a reference. You should read it too.</p>
 
 <h2>The NodeJS Server</h2>
 
-<p>Once the basic structure of your backend is written (hint: use <a href="https://expressjs.com/en/starter/generator.html">express-generator</a>), you&#39;ll have to implement PassportJS to authenticate your users. If you&#39;re not familiar with this library, this description for the official website says it all:</p>
+<p>Once the basic structure of your backend is written (hint: use <a href="https://expressjs.com/en/starter/generator.html">express-generator</a>), you&#39;ll have to implement PassportJS to authenticate your users. If you&#39;re not familiar with this library, the description on the official website says it all:</p>
 
 <blockquote>
 <p>Passport is authentication middleware for Node.js. Extremely flexible and modular, Passport can be unobtrusively dropped in to any Express-based web application. A comprehensive set of strategies support authentication using a username and password, Facebook, Twitter, and more.</p>
 </blockquote>
 
-<p>There are many plugins to easily implement strategies for Google, Facebook, bearer tokens, etc. For this blog post, we&#39;ll roll our own local strategy to go straight to the point.</p>
+<p>There are many plugins to easily implement strategies for Google, Facebook, tokens, etc. For this blog post, we&#39;ll roll our own local strategy to go straight to the point.</p>
 
-<p>So, <code>npm i passport passport-local</code>, and let&#39;s write our strategy.</p>
+<p>So, <code>npm i passport passport-local</code>, and let&#39;s write our passport config file.</p>
 
 <p><strong>passport.ts</strong></p>
 <div class="highlight"><pre><code class="language-ts" data-lang="ts"><span class="nx">passport</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="k">new</span> <span class="nx">LocalStrategy</span><span class="p">(</span>
@@ -166,13 +166,13 @@
   <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">sendStatus</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
 <span class="p">})</span>
 </code></pre></div>
-<p>The middleware <code>Auth.isLogged</code> contains this simple code:</p>
-<div class="highlight"><pre><code class="language-ts" data-lang="ts">  <span class="kr">static</span> <span class="nx">isLogged</span><span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">,</span> <span class="nx">next</span>: <span class="kt">NextFunction</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nx">next</span><span class="p">()</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">sendStatus</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+<p>Note: the middleware <code>Auth.isLogged</code> contains this simple code:</p>
+<div class="highlight"><pre><code class="language-ts" data-lang="ts"><span class="kr">static</span> <span class="nx">isLogged</span><span class="p">(</span><span class="nx">req</span>: <span class="kt">Request</span><span class="p">,</span> <span class="nx">res</span>: <span class="kt">Response</span><span class="p">,</span> <span class="nx">next</span>: <span class="kt">NextFunction</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">next</span><span class="p">()</span>
   <span class="p">}</span>
+  <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">sendStatus</span><span class="p">(</span><span class="mi">401</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre></div>
 <p>And just to check easily if we&#39;re logged, we&#39;ll add a <code>/users/me</code> call that will return the currently logged user.</p>
 
@@ -191,7 +191,7 @@
 <p>I created a few utility methods to simplify the multiple webcalls we&#39;ll have to write. We&#39;ll also take care of the cookie sent back by the server, as Unity won&#39;t do it for us.</p>
 
 <p><strong>Webservices.cs</strong></p>
-<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">static</span> <span class="kt">string</span> <span class="n">baseURL</span> <span class="p">=</span> <span class="s">&quot;http://localhost:3003&quot;</span><span class="p">;</span>
+<div class="highlight"><pre><code class="language-csharp" data-lang="csharp"><span class="k">static</span> <span class="kt">string</span> <span class="n">baseURL</span> <span class="p">=</span> <span class="s">&quot;http://localhost:3000&quot;</span><span class="p">;</span>
 
 <span class="k">public</span> <span class="k">static</span> <span class="kt">string</span> <span class="n">CookieString</span>
 <span class="p">{</span>
@@ -210,7 +210,7 @@
 
 <span class="k">public</span> <span class="k">static</span> <span class="n">UnityWebRequest</span> <span class="nf">Get</span><span class="p">(</span><span class="kt">string</span> <span class="n">path</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="n">UnityWebRequest</span><span class="p">(</span><span class="n">Webservices</span><span class="p">.</span><span class="n">BuildUrl</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="s">&quot;GET&quot;</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="n">UnityWebRequest</span><span class="p">(</span><span class="n">BuildUrl</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="s">&quot;GET&quot;</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(!</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">CookieString</span><span class="p">))</span>
     <span class="p">{</span>
         <span class="n">request</span><span class="p">.</span><span class="n">SetRequestHeader</span><span class="p">(</span><span class="s">&quot;cookie&quot;</span><span class="p">,</span> <span class="n">CookieString</span><span class="p">);</span>
@@ -222,7 +222,7 @@
 
 <span class="k">public</span> <span class="k">static</span> <span class="n">UnityWebRequest</span> <span class="nf">Post</span><span class="p">(</span><span class="kt">string</span> <span class="n">path</span><span class="p">,</span> <span class="kt">string</span> <span class="n">jsonString</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="n">UnityWebRequest</span><span class="p">(</span><span class="n">Webservices</span><span class="p">.</span><span class="n">BuildUrl</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="s">&quot;POST&quot;</span><span class="p">);</span>
+    <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="k">new</span> <span class="n">UnityWebRequest</span><span class="p">(</span><span class="n">BuildUrl</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="s">&quot;POST&quot;</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(!</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">CookieString</span><span class="p">))</span>
     <span class="p">{</span>
         <span class="n">request</span><span class="p">.</span><span class="n">SetRequestHeader</span><span class="p">(</span><span class="s">&quot;cookie&quot;</span><span class="p">,</span> <span class="n">CookieString</span><span class="p">);</span>
@@ -234,9 +234,9 @@
     <span class="k">return</span> <span class="n">request</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>We initialized the request, defined some handlers and headers, encoded the data, injected the cookie... Nothing too fancy, but nothing short of trivial neither. The official documentation is clearly lacking for this point.</p>
+<p>Those <code>Get()</code> and <code>Post()</code> methods will form the basis of our future calls. We&#39;re setting up the <code>request</code> instance with some handlers to consume the data once the server responds. We also inject the cookie string (if set), so that we keep our session throughout calls.</p>
 
-<p>Now that those helpers are defined, we can focus on...</p>
+<p>Now that those essential helpers are defined, we can focus on...</p>
 
 <h3>The form</h3>
 
@@ -292,6 +292,8 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<p>Aaaaand... it works. You should see the user data in place of the &quot;[empty]&quot; label right after clicking the button.</p>
+
 <p>What&#39;s happening here? Not much, actually. We created a <code>User</code> instance, serialized it to JSON, and POSTed it to our server. If you made everything correctly, your should see the used data appearing in place of the &quot;[empty]&quot; label.</p>
 
   </div>
