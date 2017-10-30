@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Make a Sign In Form With Unity and NodeJS</title>
-  <meta name="description" content="Ever dreamed of making your own login form in Unity, to authenticate your users through NodeJS? Good, that&amp;#39;s exactly what we&amp;#39;re about to do. This pos...">
+  <meta name="description" content="Ever dreamed of making your own login form in Unity, to authenticate your users through NodeJS? Good, that&amp;#39;s exactly what we&amp;#39;re about to do.">
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="/assets/main.css">
@@ -276,6 +276,8 @@
             <span class="n">email</span> <span class="p">=</span> <span class="n">tfLogin</span><span class="p">.</span><span class="n">text</span><span class="p">,</span>
             <span class="n">password</span> <span class="p">=</span> <span class="n">tfPassword</span><span class="p">.</span><span class="n">text</span>
         <span class="p">};</span>
+        <span class="c1">// Delete cookie before requesting a new login</span>
+        <span class="n">Webservices</span><span class="p">.</span><span class="n">CookieString</span> <span class="p">=</span> <span class="k">null</span><span class="p">;</span>
 
         <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="n">Webservices</span><span class="p">.</span><span class="n">Post</span><span class="p">(</span><span class="s">&quot;login&quot;</span><span class="p">,</span> <span class="n">JsonUtility</span><span class="p">.</span><span class="n">ToJson</span><span class="p">(</span><span class="n">user</span><span class="p">));</span>
         <span class="k">yield</span> <span class="k">return</span> <span class="n">request</span><span class="p">.</span><span class="n">Send</span><span class="p">();</span>
@@ -343,7 +345,7 @@
 
           
           <li>
-            <a href="https://www.linkedin.com/in/simon-cambier-163b0348/"><i class="fa fa-linkedin-square icon" style="color:#828282" aria-hidden="true"></i><span class="username">&nbsp;&nbsp;Simon Cambier</span></a>
+            <a href="https://www.linkedin.com/in/simon-cambier-163b0348/"><i class="fa fa-linkedin-square icon" style="color:#828282" aria-hidden="true"></i>&nbsp;&nbsp;<span class="username">Simon Cambier</span></a>
 
           </li>
           
