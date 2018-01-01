@@ -118,6 +118,14 @@
   <div class="post-full-content" itemprop="articleBody">
     <p>In the <a href="/2017/10/30/modernizing-impactjs-part-1-modules.html">previous post</a>, I explained how ImpactJS used modules before modules were a thing, and how I adapted its code for ES6. Despite the fact that ES6 modules are now natively supported by most browsers, a compilation step is still needed for a number of reasons.</p>
 
+<hr>
+
+<p>This post is part of a series:
+<a href="/2017/10/30/modernizing-impactjs-part-1-modules.html">part 1</a> -
+<a href="/2018/01/01/modernizing-impactjs-part-3-weltmeister.html">part 3</a></p>
+
+<hr>
+
 <ul>
 <li>Native ES6 modules support is pretty new, and not all browsers have this feature</li>
 <li>Directly loading npm packages (and their dozens of dependencies) is awfully slow</li>
@@ -148,7 +156,6 @@
   <span class="nx">babel</span><span class="o">:</span> <span class="p">{</span>
     <span class="nx">presets</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;env&#39;</span><span class="p">],</span>
     <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
-      <span class="s1">&#39;syntax-dynamic-import&#39;</span><span class="p">,</span>
       <span class="s1">&#39;dynamic-import-node&#39;</span><span class="p">,</span>
     <span class="p">],</span>
   <span class="p">},</span>

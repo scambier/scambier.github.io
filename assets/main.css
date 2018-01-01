@@ -474,6 +474,11 @@ body {
   font-family: 'Roboto', sans-serif;
   color: #333; }
 
+hr {
+  margin: 1em 1em;
+  border: 0;
+  border-top: 1px solid darkgrey; }
+
 .wrapper {
   padding-left: 10vw;
   padding-right: 10vw; }

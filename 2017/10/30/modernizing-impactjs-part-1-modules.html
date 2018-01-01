@@ -118,17 +118,19 @@
   <div class="post-full-content" itemprop="articleBody">
     <p>If you were interested in making games for the web between 2010 and 2014, chances are that you landed at least once on the <a href="http://impactjs.com/">ImpactJS front page</a>. This was (and still is) a really great engine. It packs a map editor, an entity system, basic physics and collisions...</p>
 
+<hr>
+
+<p>This post is part of a series:
+<a href="/2017/11/09/modernizing-impactjs-part-2-brunch.html">part 2</a> -
+<a href="/2018/01/01/modernizing-impactjs-part-3-weltmeister.html">part 3</a></p>
+
+<hr>
+
 <p>I still like to prototype a bit with ImpactJS every once in a while. You can quickly have a running project, and I&#39;ve used it a few times for Ludum Dares. But while the engine&#39;s code is well written and legible, it feels ancient. I wanted to dust it off to make use of more modern Javascript&#39;s features, like npm packages and ES6 modules.</p>
 
 <p>In this post (and the followings), I will explain how ImpactJS works, and what steps I took to rise it to modern JS quality levels.</p>
 
 <p><strong>Disclaimer:</strong> because ImpactJS source code is not free (both meanings), I can only show code that is outside the scope of the engine itself.</p>
-
-<p><br /></p>
-
-<h1>Part 1 - The modules</h1>
-
-<p><br /></p>
 
 <p>Here is how an ImpactJS module looks like:</p>
 <div class="highlight"><pre><code class="language-js" data-lang="js"><span class="nx">ig</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span> 
