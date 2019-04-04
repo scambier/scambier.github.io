@@ -24,14 +24,14 @@ browser, there is still a feature that I purposedly left behind: Weltmeister,
 the (aptly named) map editor. Unlike the other parts of the engine that were
 pretty straightforward to translate, Weltmeister prove to be a bit trickier.
 
-This post is part of a series: part 1
+This post is part of a series : part 1
 [https://scambier.github.io/2017/10/30/modernizing-impactjs-part-1-the-modules/]  - 
 part 2
-[https://scambier.github.io/2017/11/09/modernizing-impactjs-part-2-ti">
+[https://scambier.github.io/2017/11/09/modernizing-impactjs-part-2-t">
     <meta property="og:url" content="http://192.168.1.4:2368/modernizing-impactjs-part-3-weltmeister/">
     <meta property="og:image" content="http://192.168.1.4:2368/content/images/2019/03/echo-grid-173316.jpg">
     <meta property="article:published_time" content="2018-01-01T11:35:00.000Z">
-    <meta property="article:modified_time" content="2019-04-03T19:45:53.000Z">
+    <meta property="article:modified_time" content="2019-04-04T19:40:44.000Z">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Modernizing ImpactJS - Part 3: Weltmeister">
     <meta name="twitter:description" content="Now that we have everything required to run our es6-converted ImpactJS in any
@@ -39,10 +39,10 @@ browser, there is still a feature that I purposedly left behind: Weltmeister,
 the (aptly named) map editor. Unlike the other parts of the engine that were
 pretty straightforward to translate, Weltmeister prove to be a bit trickier.
 
-This post is part of a series: part 1
+This post is part of a series : part 1
 [https://scambier.github.io/2017/10/30/modernizing-impactjs-part-1-the-modules/]  - 
 part 2
-[https://scambier.github.io/2017/11/09/modernizing-impactjs-part-2-ti">
+[https://scambier.github.io/2017/11/09/modernizing-impactjs-part-2-t">
     <meta name="twitter:url" content="http://192.168.1.4:2368/modernizing-impactjs-part-3-weltmeister/">
     <meta name="twitter:image" content="http://192.168.1.4:2368/content/images/2019/03/echo-grid-173316.jpg">
     <meta name="twitter:label1" content="Written by">
@@ -74,14 +74,14 @@ part 2
     "headline": "Modernizing ImpactJS - Part 3: Weltmeister",
     "url": "http://192.168.1.4:2368/modernizing-impactjs-part-3-weltmeister/",
     "datePublished": "2018-01-01T11:35:00.000Z",
-    "dateModified": "2019-04-03T19:45:53.000Z",
+    "dateModified": "2019-04-04T19:40:44.000Z",
     "image": {
         "@type": "ImageObject",
         "url": "http://192.168.1.4:2368/content/images/2019/03/echo-grid-173316.jpg",
         "width": 1296,
         "height": 864
     },
-    "description": "Now that we have everything required to run our es6-converted ImpactJS in any\nbrowser, there is still a feature that I purposedly left behind: Weltmeister,\nthe (aptly named) map editor. Unlike the other parts of the engine that were\npretty straightforward to translate, Weltmeister prove to be a bit trickier.\n\nThis post is part of a series: part 1\n[https://scambier.github.io/2017/10/30/modernizing-impactjs-part-1-the-modules/]  - \npart 2\n[https://scambier.github.io/2017/11/09/modernizing-impactjs-part-2-ti",
+    "description": "Now that we have everything required to run our es6-converted ImpactJS in any\nbrowser, there is still a feature that I purposedly left behind: Weltmeister,\nthe (aptly named) map editor. Unlike the other parts of the engine that were\npretty straightforward to translate, Weltmeister prove to be a bit trickier.\n\nThis post is part of a series : part 1\n[https://scambier.github.io/2017/10/30/modernizing-impactjs-part-1-the-modules/]  - \npart 2\n[https://scambier.github.io/2017/11/09/modernizing-impactjs-part-2-t",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://192.168.1.4:2368/"
@@ -147,7 +147,7 @@ part 2
 
             <section class="post-full-content">
                 <div class="post-content">
-                    <p>Now that we have everything required to run our es6-converted ImpactJS in any browser, there is still a feature that I purposedly left behind: Weltmeister, the (aptly named) map editor. Unlike the other parts of the engine that were pretty straightforward to translate, Weltmeister prove to be a bit trickier.</p><p>This post is part of a series: <a href="../2017/10/30/modernizing-impactjs-part-1-the-modules/">part 1</a> - <a href="../2017/11/09/modernizing-impactjs-part-2-time-for-a-brunch/">part 2</a></p><h2 id="the-backend">The backend</h2><p>First, we need a backend to list the levels and entities (each inside their own file), and save the updated levels. Those kind of things are impossible to do on the frontend, and ImpactJS managed to do that in PHP. We could have reused the same code, but then we would have needed to run a dev server for the frontend (Brunch), and another one for the backend (PHP). We will do this cleanly, and use the neat <a href="http://brunch.io/docs/config#-server-">server option</a> of Brunch, which runs ExpressJS.</p><p>With that, all we have to do is to rewrite the PHP code in JavaScript, only with some slight adaptations.</p><h2 id="dynamic-loading">Dynamic loading</h2><p>Good, we can now list and update your files in Weltmeister, but still have to import them dynamically. The difference between static and dynamic imports is thoroughly explained <a href="http://exploringjs.com/es6/ch_modules.html#static-module-structure">here</a>.</p><p>Basically, ES6 only allows static imports of modules for several good reasons. Dynamic imports are <a href="https://github.com/tc39/proposal-dynamic-import">still a proposal</a> (even though Chrome and Safari natively support them), but thanks to tools like Babel, we can already easily use them.</p><p>For Weltmeister, we don't know the modules' names at compilation time, since we only fetch them at runtime from the webcall to the backend. We therefore need to use dynamic imports, with the Babel plugin <a href="https://github.com/airbnb/babel-plugin-dynamic-import-node">dynamic-import-node</a>. This plugin transpile <code>import()</code> calls to <code>require()</code> promises.</p><p>That is the tricky part, since we have to transform Impact's synchronous "imports" to promises, that are asynchronous. And if a function is async, the function that calls it also needs to be async (and so on), so we have to rewrite a good chunk of that code.</p><p>For example, here is a part of the code that loads entities inside Weltmeister:</p><!--kg-card-begin: markdown--><pre><code class="language-js">async spawnEntityPath (className, path, x, y, settings) {
+                    <p>Now that we have everything required to run our es6-converted ImpactJS in any browser, there is still a feature that I purposedly left behind: Weltmeister, the (aptly named) map editor. Unlike the other parts of the engine that were pretty straightforward to translate, Weltmeister prove to be a bit trickier.</p><p>This post is part of a series : <a href="../2017/10/30/modernizing-impactjs-part-1-the-modules/">part 1</a> - <a href="../2017/11/09/modernizing-impactjs-part-2-time-for-a-brunch/">part 2</a></p><h2 id="the-backend">The backend</h2><p>First, we need a backend to list the levels and entities (each inside their own file), and save the updated levels. Those kind of things are impossible to do on the frontend, and ImpactJS managed to do that in PHP. We could have reused the same code, but then we would have needed to run a dev server for the frontend (Brunch), and another one for the backend (PHP). We will do this cleanly, and use the neat <a href="http://brunch.io/docs/config#-server-">server option</a> of Brunch, which runs ExpressJS.</p><p>With that, all we have to do is to rewrite the PHP code in JavaScript, only with some slight adaptations.</p><h2 id="dynamic-loading">Dynamic loading</h2><p>Good, we can now list and update your files in Weltmeister, but still have to import them dynamically. The difference between static and dynamic imports is thoroughly explained <a href="http://exploringjs.com/es6/ch_modules.html#static-module-structure">here</a>.</p><p>Basically, ES6 only allows static imports of modules for several good reasons. Dynamic imports are <a href="https://github.com/tc39/proposal-dynamic-import">still a proposal</a> (even though Chrome and Safari natively support them), but thanks to tools like Babel, we can already easily use them.</p><p>For Weltmeister, we don't know the modules' names at compilation time, since we only fetch them at runtime from the webcall to the backend. We therefore need to use dynamic imports, with the Babel plugin <a href="https://github.com/airbnb/babel-plugin-dynamic-import-node">dynamic-import-node</a>. This plugin transpile <code>import()</code> calls to <code>require()</code> promises.</p><p>That is the tricky part, since we have to transform Impact's synchronous "imports" to promises, that are asynchronous. And if a function is async, the function that calls it also needs to be async (and so on), so we have to rewrite a good chunk of that code.</p><p>For example, here is a part of the code that loads entities inside Weltmeister:</p><!--kg-card-begin: markdown--><pre><code class="language-js">async spawnEntityPath (className, path, x, y, settings) {
   console.log(`Loading entity ${path} from level file`)
   const entityClass = (await import(path)).default;
 
