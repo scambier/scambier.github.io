@@ -5,55 +5,51 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Writing TypeScript for the TIC-80</title>
+    <title>Modernizing ImpactJS - Part 3: Weltmeister</title>
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" type="text/css" href="../assets/built/screen.css">
 
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="canonical" href="http://192.168.1.4:2368/writing-typescript-for-the-tic-80/">
+    <link rel="canonical" href="http://192.168.1.4:2368/modernizing-impactjs-part-3-weltmeister/">
     <meta name="referrer" content="no-referrer-when-downgrade">
-    <link rel="amphtml" href="http://192.168.1.4:2368/writing-typescript-for-the-tic-80/amp/">
+    <link rel="amphtml" href="http://192.168.1.4:2368/modernizing-impactjs-part-3-weltmeister/amp/">
     
     <meta property="og:site_name" content="scambier.github.io">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Writing TypeScript for the TIC-80">
-    <meta property="og:description" content="The TIC-80 [http://tic.computer/]  is a fantasy console (much like the
-well-known PICO-8 [https://www.lexaloffle.com/pico-8.php], but with less
-restrictions) that suddenly became a lot more interesting to me with its last
-update, that allows developers to write games in JavaScript.
+    <meta property="og:title" content="Modernizing ImpactJS - Part 3: Weltmeister">
+    <meta property="og:description" content="Now that we have everything required to run our es6-converted ImpactJS in any
+browser, there is still a feature that I purposedly left behind: Weltmeister,
+the (aptly named) map editor. Unlike the other parts of the engine that were
+pretty straightforward to translate, Weltmeister prove to be a bit trickier.
 
-2017-08-05 update: this is now a real installable package, available from npm: 
-https://www.npmjs.com/package/tic80-typescript
-
-Original post:
-
-I&#x27;m not too fond of Lua — or dynamically typed languages in general, wit">
-    <meta property="og:url" content="http://192.168.1.4:2368/writing-typescript-for-the-tic-80/">
-    <meta property="og:image" content="http://192.168.1.4:2368/content/images/2019/03/tic80-code.png">
-    <meta property="article:published_time" content="2017-07-09T07:53:00.000Z">
-    <meta property="article:modified_time" content="2019-04-01T14:23:35.000Z">
+This post is part of a series : part 1
+[https://scambier.github.io/2017/10/30/modernizing-impactjs-part-1-the-modules/]  - 
+part 2
+[https://scambier.github.io/2017/11/09/modernizing-impactjs-part-2-t">
+    <meta property="og:url" content="http://192.168.1.4:2368/modernizing-impactjs-part-3-weltmeister/">
+    <meta property="og:image" content="http://192.168.1.4:2368/content/images/2019/03/echo-grid-173316.jpg">
+    <meta property="article:published_time" content="2018-01-01T11:35:00.000Z">
+    <meta property="article:modified_time" content="2019-04-04T19:57:48.000Z">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Writing TypeScript for the TIC-80">
-    <meta name="twitter:description" content="The TIC-80 [http://tic.computer/]  is a fantasy console (much like the
-well-known PICO-8 [https://www.lexaloffle.com/pico-8.php], but with less
-restrictions) that suddenly became a lot more interesting to me with its last
-update, that allows developers to write games in JavaScript.
+    <meta name="twitter:title" content="Modernizing ImpactJS - Part 3: Weltmeister">
+    <meta name="twitter:description" content="Now that we have everything required to run our es6-converted ImpactJS in any
+browser, there is still a feature that I purposedly left behind: Weltmeister,
+the (aptly named) map editor. Unlike the other parts of the engine that were
+pretty straightforward to translate, Weltmeister prove to be a bit trickier.
 
-2017-08-05 update: this is now a real installable package, available from npm: 
-https://www.npmjs.com/package/tic80-typescript
-
-Original post:
-
-I&#x27;m not too fond of Lua — or dynamically typed languages in general, wit">
-    <meta name="twitter:url" content="http://192.168.1.4:2368/writing-typescript-for-the-tic-80/">
-    <meta name="twitter:image" content="http://192.168.1.4:2368/content/images/2019/03/tic80-code.png">
+This post is part of a series : part 1
+[https://scambier.github.io/2017/10/30/modernizing-impactjs-part-1-the-modules/]  - 
+part 2
+[https://scambier.github.io/2017/11/09/modernizing-impactjs-part-2-t">
+    <meta name="twitter:url" content="http://192.168.1.4:2368/modernizing-impactjs-part-3-weltmeister/">
+    <meta name="twitter:image" content="http://192.168.1.4:2368/content/images/2019/03/echo-grid-173316.jpg">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="Simon Cambier">
     <meta name="twitter:site" content="@_scambier">
-    <meta property="og:image:width" content="721">
-    <meta property="og:image:height" content="409">
+    <meta property="og:image:width" content="1296">
+    <meta property="og:image:height" content="864">
     
     <script type="application/ld+json">
 {
@@ -75,17 +71,17 @@ I&#x27;m not too fond of Lua — or dynamically typed languages in general, wit"
         "url": "http://192.168.1.4:2368/author/simon/",
         "sameAs": []
     },
-    "headline": "Writing TypeScript for the TIC-80",
-    "url": "http://192.168.1.4:2368/writing-typescript-for-the-tic-80/",
-    "datePublished": "2017-07-09T07:53:00.000Z",
-    "dateModified": "2019-04-01T14:23:35.000Z",
+    "headline": "Modernizing ImpactJS - Part 3: Weltmeister",
+    "url": "http://192.168.1.4:2368/modernizing-impactjs-part-3-weltmeister/",
+    "datePublished": "2018-01-01T11:35:00.000Z",
+    "dateModified": "2019-04-04T19:57:48.000Z",
     "image": {
         "@type": "ImageObject",
-        "url": "http://192.168.1.4:2368/content/images/2019/03/tic80-code.png",
-        "width": 721,
-        "height": 409
+        "url": "http://192.168.1.4:2368/content/images/2019/03/echo-grid-173316.jpg",
+        "width": 1296,
+        "height": 864
     },
-    "description": "The TIC-80 [http://tic.computer/]  is a fantasy console (much like the\nwell-known PICO-8 [https://www.lexaloffle.com/pico-8.php], but with less\nrestrictions) that suddenly became a lot more interesting to me with its last\nupdate, that allows developers to write games in JavaScript.\n\n2017-08-05 update: this is now a real installable package, available from npm: \nhttps://www.npmjs.com/package/tic80-typescript\n\nOriginal post:\n\nI&#x27;m not too fond of Lua — or dynamically typed languages in general, wit",
+    "description": "Now that we have everything required to run our es6-converted ImpactJS in any\nbrowser, there is still a feature that I purposedly left behind: Weltmeister,\nthe (aptly named) map editor. Unlike the other parts of the engine that were\npretty straightforward to translate, Weltmeister prove to be a bit trickier.\n\nThis post is part of a series : part 1\n[https://scambier.github.io/2017/10/30/modernizing-impactjs-part-1-the-modules/]  - \npart 2\n[https://scambier.github.io/2017/11/09/modernizing-impactjs-part-2-t",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "http://192.168.1.4:2368/"
@@ -138,20 +134,38 @@ I&#x27;m not too fond of Lua — or dynamically typed languages in general, wit"
 
             <header class="post-full-header">
                 <section class="post-full-meta">
-                    <time class="post-full-meta-date" datetime="2017-07-09">9 July 2017</time>
+                    <time class="post-full-meta-date" datetime="2018-01-01">1 January 2018</time>
                 </section>
-                <h1 class="post-full-title">Writing TypeScript for the TIC-80</h1>
+                <h1 class="post-full-title">Modernizing ImpactJS - Part 3: Weltmeister</h1>
             </header>
 
             <figure class="post-full-image">
-                <img srcset="../content/images/size/w300/2019/03/tic80-code.png 300w, ../content/images/size/w600/2019/03/tic80-code.png 600w, ../content/images/size/w1000/2019/03/tic80-code.png 1000w, ../content/images/size/w2000/2019/03/tic80-code.png 2000w" sizes="(max-width: 800px) 400px,
+                <img srcset="../content/images/size/w300/2019/03/echo-grid-173316.jpg 300w, ../content/images/size/w600/2019/03/echo-grid-173316.jpg 600w, ../content/images/size/w1000/2019/03/echo-grid-173316.jpg 1000w, ../content/images/size/w2000/2019/03/echo-grid-173316.jpg 2000w" sizes="(max-width: 800px) 400px,
                             (max-width: 1170px) 700px,
-                            1400px" src="../content/images/size/w2000/2019/03/tic80-code.png" alt="Writing TypeScript for the TIC-80">
+                            1400px" src="../content/images/size/w2000/2019/03/echo-grid-173316.jpg" alt="Modernizing ImpactJS - Part 3: Weltmeister">
             </figure>
 
             <section class="post-full-content">
                 <div class="post-content">
-                    <p>The <a href="http://tic.computer/">TIC-80</a> is a fantasy console (much like the well-known <a href="https://www.lexaloffle.com/pico-8.php">PICO-8</a>, but with less restrictions) that suddenly became a lot more interesting to me with its last update, that allows developers to write games in JavaScript.</p><p><strong>2017-08-05 update: </strong>this is now a real installable package, available from npm: <a href="https://www.npmjs.com/package/tic80-typescript">https://www.npmjs.com/package/tic80-typescript</a></p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="http://192.168.1.4:2368/content/images/2019/03/logo.png" class="kg-image"></figure><!--kg-card-end: image--><p><strong>Original post:</strong></p><p>I'm not too fond of Lua — or dynamically typed languages in general, with the exception of JS — for various reasons, so the possibility of using JavaScript is a big deal for me, because it means that I can use TypeScript!</p><p>So, I created a small repository to host all the files needed to efficiently use TypeScript with TIC-80. It contains a definitions file with all the TIC-80 global functions, and a script that will compress the compiled JavaScript file, to save the maximum number of characters (as TIC-80 allows a maximum of 65535 bytes for the code). By default, the compressed file is still legible to ease the debugging, but you can save up to 60% of code, once compressed and mangled. It will be a bit harder to debug though.</p><p>You can read more about this project and <a href="https://github.com/scambier/tic80-typescript">download it here</a></p>
+                    <p>Now that we have everything required to run our es6-converted ImpactJS in any browser, there is still a feature that I purposedly left behind: Weltmeister, the (aptly named) map editor. Unlike the other parts of the engine that were pretty straightforward to translate, Weltmeister prove to be a bit trickier.</p><p>This post is part of a series : <a href="../2017/10/30/modernizing-impactjs-part-1-the-modules/">part 1</a> - <a href="../2017/11/09/modernizing-impactjs-part-2-time-for-a-brunch/">part 2</a></p><h2 id="the-backend">The backend</h2><p>First, we need a backend to list the levels and entities (each inside their own file), and save the updated levels. Those kind of things are impossible to do on the frontend, and ImpactJS managed to do that in PHP. We could have reused the same code, but then we would have needed to run a dev server for the frontend (Brunch), and another one for the backend (PHP). We will do this cleanly, and use the neat <a href="http://brunch.io/docs/config#-server-">server option</a> of Brunch, which runs ExpressJS.</p><p>With that, all we have to do is to rewrite the PHP code in JavaScript, only with some slight adaptations.</p><h2 id="dynamic-loading">Dynamic loading</h2><p>Good, we can now list and update your files in Weltmeister, but still have to import them dynamically. The difference between static and dynamic imports is thoroughly explained <a href="http://exploringjs.com/es6/ch_modules.html#static-module-structure">here</a>.</p><p>Basically, ES6 only allows static imports of modules for several good reasons. Dynamic imports are <a href="https://github.com/tc39/proposal-dynamic-import">still a proposal</a> (even though Chrome and Safari natively support them), but thanks to tools like Babel, we can already easily use them.</p><p>For Weltmeister, we don't know the modules' names at compilation time, since we only fetch them at runtime from the webcall to the backend. We therefore need to use dynamic imports, with the Babel plugin <a href="https://github.com/airbnb/babel-plugin-dynamic-import-node">dynamic-import-node</a>. This plugin transpile <code>import()</code> calls to <code>require()</code> promises.</p><p>That is the tricky part, since we have to transform Impact's synchronous "imports" to promises, that are asynchronous. And if a function is async, the function that calls it also needs to be async (and so on), so we have to rewrite a good chunk of that code.</p><p>For example, here is a part of the code that loads entities inside Weltmeister:</p><!--kg-card-begin: markdown--><pre><code class="language-js">async spawnEntityPath (className, path, x, y, settings) {
+  console.log(`Loading entity ${path} from level file`)
+  const entityClass = (await import(path)).default;
+
+  if (entityClass) {
+    const newEntity = new (entityClass)(x, y, settings);
+
+    /* Some weltmeister stuff */
+
+    return newEntity;
+  }
+  return null;
+}
+</code></pre>
+<!--kg-card-end: markdown--><h2 id="what-s-next">What's next?</h2><p>In the end, we have "rewritten" ImpactJS to give it a more modern feel, made npm imports possible, and even have a working map editor. There are still bugs here and there, and I haven't tested all the features, but it works, and I'm quite proud of the result.</p><p>However, and like I stated in the <a href="https://scambier.github.io/2017/10/30/modernizing-impactjs-part-1-modules.html">first post</a>, I cannot distribute the code until <a href="https://twitter.com/phoboslab">@phoboslab</a> decides to open source ImpactJS.</p><p>Everything's not lost though. I have discovered new tools and learned new skills in the process, and it motivated me to write my own engine in TypeScript. I'm designing it as a "v2" of ImpactJS, with the same key features (2D, pixel perfect, map editor, opinionated), and the goodies that I included during the conversion of ImpactJS (ES6, npm modules).</p><p>I have no ETA on this, but will write a post about it as soon as it is in a showable state. Thanks for reading!</p><!--kg-card-begin: markdown--><p>
+    <small>
+        Photo by @echogrid on <a href="https://unsplash.com/photos/kmo52azVCzg">Unsplash</a>
+    </small>
+</p><!--kg-card-end: markdown-->
                 </div>
             </section>
 
@@ -185,22 +199,23 @@ I&#x27;m not too fond of Lua — or dynamically typed languages in general, wit"
     <div class="inner">
         <div class="read-next-feed">
 
+
                 <article class="post-card post ">
 
-    <a class="post-card-image-link" href="../make-a-sign-in-form-unity-nodejs/">
-        <img class="post-card-image" srcset="../content/images/size/w300/2019/03/unity-signin-header.png 300w, ../content/images/size/w600/2019/03/unity-signin-header.png 600w, ../content/images/size/w1000/2019/03/unity-signin-header.png 1000w, ../content/images/size/w2000/2019/03/unity-signin-header.png 2000w" sizes="(max-width: 1000px) 400px, 700px" src="../content/images/size/w600/2019/03/unity-signin-header.png" alt="Make a Sign In Form With Unity and NodeJS">
+    <a class="post-card-image-link" href="../modernizing-impactjs-part-2-time-for-a-brunch/">
+        <img class="post-card-image" srcset="../content/images/size/w300/2019/03/brooke-lark-250695.jpg 300w, ../content/images/size/w600/2019/03/brooke-lark-250695.jpg 600w, ../content/images/size/w1000/2019/03/brooke-lark-250695.jpg 1000w, ../content/images/size/w2000/2019/03/brooke-lark-250695.jpg 2000w" sizes="(max-width: 1000px) 400px, 700px" src="../content/images/size/w600/2019/03/brooke-lark-250695.jpg" alt="Modernizing ImpactJS - Part 2: Time for a Brunch!">
     </a>
 
     <div class="post-card-content">
 
-        <a class="post-card-content-link" href="../make-a-sign-in-form-unity-nodejs/">
+        <a class="post-card-content-link" href="../modernizing-impactjs-part-2-time-for-a-brunch/">
 
             <header class="post-card-header">
-                <h2 class="post-card-title">Make a Sign In Form With Unity and NodeJS</h2>
+                <h2 class="post-card-title">Modernizing ImpactJS - Part 2: Time for a Brunch!</h2>
             </header>
 
             <section class="post-card-excerpt">
-                <p>Ever dreamed of making your own login form in Unity, to authenticate your users through NodeJS? Good, that's exactly what we're about to do.This post is not aimed at beginners, but will</p>
+                <p>In the previous post, I explained how ImpactJS used modules before modules were a thing, and how I adapted its code for ES6. Despite the fact that ES6 modules are now natively supported</p>
             </section>
 
         </a>
@@ -219,14 +234,13 @@ I&#x27;m not too fond of Lua — or dynamically typed languages in general, wit"
                 </li>
             </ul>
 
-            <span class="reading-time">4 min read</span>
+            <span class="reading-time">2 min read</span>
 
         </footer>
 
     </div>
 
 </article>
-
 
         </div>
     </div>
@@ -239,16 +253,16 @@ I&#x27;m not too fond of Lua — or dynamically typed languages in general, wit"
         </a>
     </div>
     <span class="floating-header-divider">&mdash;</span>
-    <div class="floating-header-title">Writing TypeScript for the TIC-80</div>
+    <div class="floating-header-title">Modernizing ImpactJS - Part 3: Weltmeister</div>
     <div class="floating-header-share">
         <div class="floating-header-share-label">Share this <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
     <path d="M7.5 15.5V4a1.5 1.5 0 1 1 3 0v4.5h2a1 1 0 0 1 1 1h2a1 1 0 0 1 1 1H18a1.5 1.5 0 0 1 1.5 1.5v3.099c0 .929-.13 1.854-.385 2.748L17.5 23.5h-9c-1.5-2-5.417-8.673-5.417-8.673a1.2 1.2 0 0 1 1.76-1.605L7.5 15.5zm6-6v2m-3-3.5v3.5m6-1v2"/>
 </svg>
 </div>
-        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Writing%20TypeScript%20for%20the%20TIC-80&url=http://192.168.1.4:2368/writing-typescript-for-the-tic-80/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
+        <a class="floating-header-share-tw" href="https://twitter.com/share?text=Modernizing%20ImpactJS%20-%20Part%203%3A%20Weltmeister&url=http://192.168.1.4:2368/modernizing-impactjs-part-3-weltmeister/" onclick="window.open(this.href, 'share-twitter', 'width=550,height=235');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
         </a>
-        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://192.168.1.4:2368/writing-typescript-for-the-tic-80/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
+        <a class="floating-header-share-fb" href="https://www.facebook.com/sharer/sharer.php?u=http://192.168.1.4:2368/modernizing-impactjs-part-3-weltmeister/" onclick="window.open(this.href, 'share-facebook','width=580,height=296');return false;">
             <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
         </a>
     </div>
