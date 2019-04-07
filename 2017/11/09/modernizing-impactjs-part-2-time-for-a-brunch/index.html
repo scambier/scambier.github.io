@@ -31,7 +31,7 @@ This post is part of a series: part 1
 part 3
 [http://localhost:2368/2018/01/01/">
     <meta property="og:url" content="https://scambier.github.io/2017/11/09/modernizing-impactjs-part-2-time-for-a-brunch/">
-    <meta property="og:image" content="https://scambier.github.io/content/images/2019/03/brooke-lark-250695.jpg">
+    <meta property="og:image" content="../../../../content/images/2019/03/brooke-lark-250695.jpg">
     <meta property="article:published_time" content="2017-11-09T11:24:00.000Z">
     <meta property="article:modified_time" content="2019-03-28T11:40:15.000Z">
     <meta name="twitter:card" content="summary_large_image">
@@ -116,11 +116,11 @@ part 3
     <div class="inner">
         <nav class="site-nav">
     <div class="site-nav-left">
-                <a class="site-nav-logo" href="https://scambier.github.io">scambier.github.io</a>
+                <a class="site-nav-logo" href="../../../../">scambier.github.io</a>
             <ul class="nav" role="menu">
-    <li class="nav-home" role="menuitem"><a href="https://scambier.github.io/">Home</a></li>
-    <li class="nav-about" role="menuitem"><a href="https://scambier.github.io/about/">About</a></li>
-    <li class="nav-projects" role="menuitem"><a href="https://scambier.github.io/projects/">Projects</a></li>
+    <li class="nav-home" role="menuitem"><a href="../../../../">Home</a></li>
+    <li class="nav-about" role="menuitem"><a href="../../../../about/">About</a></li>
+    <li class="nav-projects" role="menuitem"><a href="../../../../projects/">Projects</a></li>
 </ul>
 
     </div>
@@ -157,7 +157,7 @@ part 3
 
             <section class="post-full-content">
                 <div class="post-content">
-                    <p>In the <a href="../../../10/30/modernizing-impactjs-part-1-the-modules/">previous post</a>, I explained how ImpactJS used modules before modules were a thing, and how I adapted its code for ES6. Despite the fact that ES6 modules are now natively supported by most browsers, a compilation step is still needed for a number of reasons.</p><p>This post is part of a series: <a href="../../../10/30/modernizing-impactjs-part-1-the-modules/">part 1</a> - <a href="../../../../2018/01/01/modernizing-impactjs-part-3-weltmeister/">part 3</a></p><ul><li>Native ES6 modules support is pretty new, and not all browsers have this feature</li><li>Directly loading npm packages (and their dozens of dependencies) is awfully slow</li><li>Most npm packages are not even ES6-compatible</li><li>We'll have to compile the game for distribution anyway</li><li>Finally, a compilation step allows us to leverage BabelJS to use features that don't exist yet</li></ul><p>But which JavaScript bundler/builder/compiler will we choose?</p><p>When I need to choose a tool, I tend to favor convention over configuration. It must work out-of-the-box (or at least I shouldn't spend hours on configuration). I like to spend time on my projects, not waste it to setup tools. After a bit of reviewing, I settled for <a href="http://brunch.io/">Brunch</a>. It's a bit of an underdog compared to Webpack, but it perfectly fits our needs for the ImpactJS rewrite, as it follows the <a href="https://en.wikipedia.org/wiki/KISS_principle">KISS principle</a>.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="https://scambier.github.io/content/images/2019/03/brunch-header.png" class="kg-image"></figure><!--kg-card-end: image--><p>Ok, so what will our Brunch config file look like?</p><!--kg-card-begin: markdown--><pre><code class="language-js">module.exports = {
+                    <p>In the <a href="http://localhost:2368/2017/10/30/modernizing-impactjs-part-1-the-modules/">previous post</a>, I explained how ImpactJS used modules before modules were a thing, and how I adapted its code for ES6. Despite the fact that ES6 modules are now natively supported by most browsers, a compilation step is still needed for a number of reasons.</p><p>This post is part of a series: <a href="http://localhost:2368/2017/10/30/modernizing-impactjs-part-1-the-modules/">part 1</a> - <a href="http://localhost:2368/2018/01/01/modernizing-impactjs-part-3-weltmeister/">part 3</a></p><ul><li>Native ES6 modules support is pretty new, and not all browsers have this feature</li><li>Directly loading npm packages (and their dozens of dependencies) is awfully slow</li><li>Most npm packages are not even ES6-compatible</li><li>We'll have to compile the game for distribution anyway</li><li>Finally, a compilation step allows us to leverage BabelJS to use features that don't exist yet</li></ul><p>But which JavaScript bundler/builder/compiler will we choose?</p><p>When I need to choose a tool, I tend to favor convention over configuration. It must work out-of-the-box (or at least I shouldn't spend hours on configuration). I like to spend time on my projects, not waste it to setup tools. After a bit of reviewing, I settled for <a href="http://brunch.io/">Brunch</a>. It's a bit of an underdog compared to Webpack, but it perfectly fits our needs for the ImpactJS rewrite, as it follows the <a href="https://en.wikipedia.org/wiki/KISS_principle">KISS principle</a>.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="../../../../content/images/2019/03/brunch-header.png" class="kg-image"></figure><!--kg-card-end: image--><p>Ok, so what will our Brunch config file look like?</p><!--kg-card-begin: markdown--><pre><code class="language-js">module.exports = {
   files: {
     javascripts: {
       joinTo: {
@@ -320,7 +320,7 @@ part 3
 
 <div class="floating-header">
     <div class="floating-header-logo">
-        <a href="https://scambier.github.io">
+        <a href="../../../../">
             <span>scambier.github.io</span>
         </a>
     </div>
@@ -350,9 +350,9 @@ part 3
 
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
-                <section class="copyright"><a href="https://scambier.github.io">scambier.github.io</a> &copy; 2019</section>
+                <section class="copyright"><a href="../../../../">scambier.github.io</a> &copy; 2019</section>
                 <nav class="site-footer-nav">
-                    <a href="https://scambier.github.io">Latest Posts</a>
+                    <a href="../../../../">Latest Posts</a>
                     
                     <a href="https://twitter.com/_scambier" target="_blank" rel="noopener">Twitter</a>
                     <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>

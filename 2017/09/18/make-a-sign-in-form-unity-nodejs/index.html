@@ -31,7 +31,7 @@ following technologies:
    [http://passportjs.org/]
  * TypeScript. Not essential, bu">
     <meta property="og:url" content="https://scambier.github.io/2017/09/18/make-a-sign-in-form-unity-nodejs/">
-    <meta property="og:image" content="https://scambier.github.io/content/images/2019/03/unity-signin-header.png">
+    <meta property="og:image" content="../../../../content/images/2019/03/unity-signin-header.png">
     <meta property="article:published_time" content="2017-09-18T08:28:00.000Z">
     <meta property="article:modified_time" content="2019-03-28T15:05:35.000Z">
     <meta name="twitter:card" content="summary_large_image">
@@ -116,11 +116,11 @@ following technologies:
     <div class="inner">
         <nav class="site-nav">
     <div class="site-nav-left">
-                <a class="site-nav-logo" href="https://scambier.github.io">scambier.github.io</a>
+                <a class="site-nav-logo" href="../../../../">scambier.github.io</a>
             <ul class="nav" role="menu">
-    <li class="nav-home" role="menuitem"><a href="https://scambier.github.io/">Home</a></li>
-    <li class="nav-about" role="menuitem"><a href="https://scambier.github.io/about/">About</a></li>
-    <li class="nav-projects" role="menuitem"><a href="https://scambier.github.io/projects/">Projects</a></li>
+    <li class="nav-home" role="menuitem"><a href="../../../../">Home</a></li>
+    <li class="nav-about" role="menuitem"><a href="../../../../about/">About</a></li>
+    <li class="nav-projects" role="menuitem"><a href="../../../../projects/">Projects</a></li>
 </ul>
 
     </div>
@@ -248,7 +248,7 @@ public static UnityWebRequest Post(string path, string jsonString)
     return request;
 }
 </code></pre>
-<!--kg-card-end: markdown--><p>Those <code>Get()</code> and <code>Post()</code> methods will form the basis of our future calls. We're setting up the <code>request</code> instance with some handlers to consume the data once the server responds. We also inject the cookie string (if set), so that we keep our session throughout calls.</p><p>Now that those essential helpers are defined, we can focus on...</p><h3 id="the-form">The form</h3><p>Create your scene, and draw your UI to look like that:</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="https://scambier.github.io/content/images/2019/03/unity-signin-form.png" class="kg-image"></figure><!--kg-card-end: image--><p>Make your Login button trigger the <code>LoginUser()</code> method below, and link those two InputFields to the <code>tfLogin</code>and <code>tfPassword</code> attributes of the following script:</p><p><strong>Login.cs</strong></p><!--kg-card-begin: markdown--><pre><code class="language-csharp">public class Login : MonoBehaviour {
+<!--kg-card-end: markdown--><p>Those <code>Get()</code> and <code>Post()</code> methods will form the basis of our future calls. We're setting up the <code>request</code> instance with some handlers to consume the data once the server responds. We also inject the cookie string (if set), so that we keep our session throughout calls.</p><p>Now that those essential helpers are defined, we can focus on...</p><h3 id="the-form">The form</h3><p>Create your scene, and draw your UI to look like that:</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="../../../../content/images/2019/03/unity-signin-form.png" class="kg-image"></figure><!--kg-card-end: image--><p>Make your Login button trigger the <code>LoginUser()</code> method below, and link those two InputFields to the <code>tfLogin</code>and <code>tfPassword</code> attributes of the following script:</p><p><strong>Login.cs</strong></p><!--kg-card-begin: markdown--><pre><code class="language-csharp">public class Login : MonoBehaviour {
 
     public InputField tfLogin, tfPassword;
 
@@ -422,7 +422,7 @@ public static UnityWebRequest Post(string path, string jsonString)
 
 <div class="floating-header">
     <div class="floating-header-logo">
-        <a href="https://scambier.github.io">
+        <a href="../../../../">
             <span>scambier.github.io</span>
         </a>
     </div>
@@ -452,9 +452,9 @@ public static UnityWebRequest Post(string path, string jsonString)
 
         <footer class="site-footer outer">
             <div class="site-footer-content inner">
-                <section class="copyright"><a href="https://scambier.github.io">scambier.github.io</a> &copy; 2019</section>
+                <section class="copyright"><a href="../../../../">scambier.github.io</a> &copy; 2019</section>
                 <nav class="site-footer-nav">
-                    <a href="https://scambier.github.io">Latest Posts</a>
+                    <a href="../../../../">Latest Posts</a>
                     
                     <a href="https://twitter.com/_scambier" target="_blank" rel="noopener">Twitter</a>
                     <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
